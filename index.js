@@ -56,6 +56,16 @@ async function run() {
             res.json(result)
         });
 
+        // DELETE API for delete services from manage all products
+           app.delete('/services/:id', async (req, res) => {
+               const id = req.params.id;
+               const query = { _id: ObjectId(id) };
+               const result = await servicesCollection.deleteOne(query);
+               console.log(result);
+
+               res.json(result);
+})
+
         // POST API users 
         app.post('/users', async (req, res) => {
             const user = req.body;
@@ -149,6 +159,9 @@ app.delete('/buyer/:id', async (req, res) => {
     const result = await buyerCollection.deleteOne(query);
     res.json(result);
 })
+
+
+
 
 
 
